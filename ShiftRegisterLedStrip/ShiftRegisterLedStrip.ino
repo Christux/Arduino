@@ -19,6 +19,7 @@
 #include "LedStrip.h"
 #include "Animations.h"
 #include "BlinkLed.h"
+#include "Button.h"
 
 #define BUTTON_PIN 7
 #define LATCH_PIN 9
@@ -39,11 +40,16 @@ Animation * animations[nAnim] = {
   new KnightRider(N_LEDS, ledstrip),
   new Random(N_LEDS, ledstrip)
 };
-
-// Init button
 int currentAnim = 4;
-int buttonState = HIGH;         // current state of the button
-int lastButtonState = HIGH;
+
+// button action fucntion
+void nextAnimation() {
+  currentAnim = currentAnim < nAnim - 1 ? currentAnim + 1 : 0;
+  animations[currentAnim]->reset();
+}
+
+// Init button with function callback
+Button button = Button(BUTTON_PIN,nextAnimation);
 
 // Init blinking led
 BlinkLed bl = BlinkLed(LED_BUILTIN,1000);
@@ -54,7 +60,7 @@ BlinkLed bl = BlinkLed(LED_BUILTIN,1000);
 void setup() {
   ledstrip.setup();
   bl.setup();
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  button.setup();
   Serial.begin(9600);
 }
 
@@ -62,6 +68,11 @@ void setup() {
  * Main loop
  */
 void loop() {
+
+  /*
+   * Play animation
+   */
+  animations[currentAnim]->update();
 
   /* 
    * Blinks built-in led, shows if program is alive
@@ -71,14 +82,7 @@ void loop() {
   /*
    * Listen on button push and go to next animation
    */
-  buttonState = digitalRead(BUTTON_PIN);
-  if (buttonState == LOW) {
-    if (buttonState != lastButtonState) {
-      currentAnim = currentAnim < nAnim - 1 ? currentAnim + 1 : 0;
-      animations[currentAnim]->reset();
-    }
-  }
-  lastButtonState = buttonState;
+  button.handle();
 
   /*
    * Listen on serial communication
@@ -96,11 +100,6 @@ void loop() {
       Serial.print("\n");
     }
   }
-
-  /*
-   * Play animation
-   */
-  animations[currentAnim]->update();
 
   delay(20);
 }
