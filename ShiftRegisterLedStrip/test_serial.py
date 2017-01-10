@@ -11,7 +11,7 @@ import time
 import sys
 import signal
 
-# Define web client abstract class
+# Define serial abstract class
 class ArduinoSerial():
 
 	def __init__(self,device,br):
