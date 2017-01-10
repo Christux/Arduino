@@ -10,7 +10,7 @@ Some Arduino projects
 ## Screenshots :
 
 <p align="center">
-  <img src="ShitfRegisterLedStrip/ledstrip.png"/>
+  <img src="ShiftRegisterLedStrip/ledstrip.png"/>
 </p>
 
 ## License :

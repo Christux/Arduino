@@ -1,4 +1,4 @@
-# ShitfRegisterLedStrip
+# ShiftRegisterLedStrip
 
 Copyright (C) 2017 Christux
 
@@ -10,7 +10,7 @@ Animation can be changed by pressing the button or by serial prompt (see test).
 ## Screenshots :
 
 <p align="center">
-  <img src="ShitfRegisterLedStrip/ledstrip.png"/>
+  <img src="ledstrip.png"/>
 </p>
 
 ## Links :
