@@ -33,11 +33,11 @@ void AAnimation::reset() {
 }
 
 void AAnimation::update() {
-  unsigned long curr_time = millis();
-  if (curr_time >= _nextFlicker) {
+  unsigned long currTime = millis();
+  if (currTime >= _nextFlicker) {
     run();
     _step = _step < _numStep - 1 ? _step + 1 : 0;
-    _nextFlicker = curr_time + _delay;
+    _nextFlicker = currTime + _delay;
   }
 }
 

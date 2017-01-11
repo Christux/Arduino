@@ -23,7 +23,8 @@ Button::Button(unsigned int buttonPin, buttonActionFunction callbackFunction) :
   _buttonPin(buttonPin),
   _callbackFunction(callbackFunction),
   _buttonState(HIGH),
-  _lastButtonState(HIGH)
+  _lastButtonState(HIGH),
+  _pushTime(0)
 {}
 
 /*
@@ -38,11 +39,14 @@ void Button::setup() const {
  */
 void Button::handle() {
 
+  unsigned long currTime = millis();
   _buttonState = digitalRead(_buttonPin);
+  
   if (_buttonState == LOW) {
-    if (_buttonState != _lastButtonState) {
+    if (_lastButtonState == HIGH && currTime > _pushTime) {
       _callbackFunction();
     }
+    _pushTime = currTime + _pushDelay;
   }
   _lastButtonState = _buttonState;
 }

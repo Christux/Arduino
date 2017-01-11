@@ -27,10 +27,12 @@ typedef void (*buttonActionFunction) ();
 class Button
 {  
   protected:
-    unsigned int _buttonPin;
-    buttonActionFunction _callbackFunction;
+    const unsigned int _buttonPin;
+    const buttonActionFunction _callbackFunction;
     int _buttonState;
     int _lastButtonState;
+    unsigned long _pushTime;
+    const int _pushDelay = 200; // millis
     
   public:
     Button(unsigned int ledPin, buttonActionFunction callbackFunction);

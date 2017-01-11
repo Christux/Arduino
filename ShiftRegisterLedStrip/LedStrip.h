@@ -22,11 +22,11 @@
 class LedStrip
 {
   protected:
-    uint8_t _N;
+    const uint8_t _N;
     uint8_t *_T;
-    uint8_t _clockPin;
-    uint8_t _latchPin;
-    uint8_t _dataPin;
+    const uint8_t _clockPin;
+    const uint8_t _latchPin;
+    const uint8_t _dataPin;
     const uint8_t CLOCK_TEMP = 50; // u-seconds
     
   public:

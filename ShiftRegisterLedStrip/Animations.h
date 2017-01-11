@@ -37,7 +37,7 @@ class Animation
 class AAnimation : public Animation
 {
   protected:
-    uint8_t _N;
+    const uint8_t _N;
     LedStrip& _ledstrip;
     const unsigned int _delay = 100;
     unsigned long _nextFlicker;

@@ -19,7 +19,7 @@
 /*
  * Construtor
  */
-LedStrip::LedStrip(const uint8_t nLeds, uint8_t clockPin, uint8_t latchPin, uint8_t dataPin) :
+LedStrip::LedStrip(uint8_t nLeds, uint8_t clockPin, uint8_t latchPin, uint8_t dataPin) :
   _N(nLeds),
   _T((uint8_t*)malloc(_N)),
   _clockPin(clockPin),

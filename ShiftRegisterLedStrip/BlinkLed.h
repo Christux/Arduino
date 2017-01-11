@@ -22,8 +22,8 @@
 class BlinkLed
 {
   protected:
-    unsigned int _ledPin;
-    unsigned int _delay;
+    const unsigned int _ledPin;
+    const unsigned int _delay;
     unsigned long _nextFlicker;
     bool _state;
     
