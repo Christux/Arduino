@@ -43,8 +43,7 @@ void BlinkLed::update() {
 
   if (curr_time >= _nextFlicker) {
     _nextFlicker = curr_time + _delay;
-    _state=!_state;
-    digitalWrite(_ledPin, _state);
+    digitalWrite(_ledPin, _state=!_state);
   }
 }
 
