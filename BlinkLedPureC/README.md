@@ -1,4 +1,4 @@
-# Arduino
+# Blinking Led in pure C
 
 Copyright (C) 2017 Christux
 

@@ -1,4 +1,4 @@
-# Arduino
+# Asynchronous Button Library
 
 Copyright (C) 2017 Christux
 
