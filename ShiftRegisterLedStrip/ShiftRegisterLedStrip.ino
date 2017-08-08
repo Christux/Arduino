@@ -17,6 +17,7 @@
 #include "Arduino.h"
 #include "LedStrip.h"
 #include "Animations.h"
+#include "Animator.h"
 #include "BlinkLed.h"
 #include "Button.h"
 
@@ -27,28 +28,15 @@
 #define N_LEDS 8
 
 // Init ledstrip
-LedStrip ledstrip(N_LEDS, CLOCK_PIN, LATCH_PIN, DATA_PIN);
+LedStrip ledstrip = LedStrip(N_LEDS, CLOCK_PIN, LATCH_PIN, DATA_PIN);
 
-// Init animations in a table
-const int nAnim = 6;
-Animation * animations[nAnim] = {
-  new Right(N_LEDS, ledstrip),
-  new Left(N_LEDS, ledstrip),
-  new Bounce(N_LEDS, ledstrip),
-  new Center(N_LEDS, ledstrip),
-  new KnightRider(N_LEDS, ledstrip),
-  new Random(N_LEDS, ledstrip)
-};
-int currentAnim = 4;
+// Drives animations in an Animator object
+Animator animator = Animator();
 
-// button action fucntion
-void nextAnimation() {
-  currentAnim = currentAnim < nAnim - 1 ? currentAnim + 1 : 0;
-  animations[currentAnim]->reset();
-}
-
-// Init button with function callback
-Button button = Button(BUTTON_PIN,nextAnimation);
+// Init button with anonymous function callback
+Button button = Button(BUTTON_PIN, [] () {
+  animator.nextAnimation();
+});
 
 // Init blinking led
 BlinkLed bl = BlinkLed(LED_BUILTIN,1000);
@@ -57,6 +45,16 @@ BlinkLed bl = BlinkLed(LED_BUILTIN,1000);
  * Setup
  */
 void setup() {
+
+  // Add animations to animator
+  animator.add(new Right(N_LEDS, ledstrip));
+  animator.add(new Left(N_LEDS, ledstrip));
+  animator.add(new Bounce(N_LEDS, ledstrip));
+  animator.add(new Center(N_LEDS, ledstrip));
+  animator.add(new KnightRider(N_LEDS, ledstrip));
+  animator.add(new Random(N_LEDS, ledstrip));
+  animator.play(4); // Select 5th animation
+  
   ledstrip.setup();
   bl.setup();
   button.setup();
@@ -71,7 +69,7 @@ void loop() {
   /*
    * Play animation
    */
-  animations[currentAnim]->update();
+  animator.handle();
 
   /* 
    * Blinks built-in led, shows if program is alive
@@ -87,11 +85,12 @@ void loop() {
    * Listen on serial communication
    */
   if (Serial.available() > 0) {
+    char nAnim = animator.getAnimNumber();
     char c = Serial.read() - 49;
+    
     if (c >= 0 && c < nAnim) {
-      currentAnim = c;
-      animations[currentAnim]->reset();
-      Serial.println(currentAnim+1,DEC);
+      animator.play(c);
+      Serial.println(c+1,DEC);
     }
     else {
       Serial.print("Error: enter a number between 1 and ");
