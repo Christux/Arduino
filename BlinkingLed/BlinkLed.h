@@ -30,7 +30,7 @@ class BlinkLed
   public:
     BlinkLed(unsigned int ledPin, unsigned int delay);
     void setup() const;
-    void update();
+    void handle();
 };
 
 #endif

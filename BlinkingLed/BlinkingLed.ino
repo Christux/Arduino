@@ -32,6 +32,10 @@ void setup() {
  * Main loop
  */
 void loop() {
-  bl.update();
+  
+  /* 
+   * Blinks built-in led
+   */
+  bl.handle();
 }
 
