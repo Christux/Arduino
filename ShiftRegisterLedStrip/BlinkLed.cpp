@@ -37,7 +37,7 @@ void BlinkLed::setup() const {
 /*
  * Reverses led state
  */
-void BlinkLed::update() {
+void BlinkLed::handle() {
 
   unsigned long curr_time = millis();
 

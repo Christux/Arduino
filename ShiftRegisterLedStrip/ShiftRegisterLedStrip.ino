@@ -74,7 +74,7 @@ void loop() {
   /* 
    * Blinks built-in led, shows if program is alive
    */
-  bl.update();
+  bl.handle();
 
   /*
    * Listen on button push and go to next animation
