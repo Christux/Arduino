@@ -17,7 +17,8 @@ The libs you should install on the ArduinoIDE are :</br>
 <a href="https://github.com/Christux/ChristuxAnimation">https://github.com/Christux/ChristuxAnimation</a>
 
 The web app source code is available here :</br>
-<a href="https://github.com/Christux/Javascript/tree/master/Remote">https://github.com/Christux/Javascript/tree/master/Remote</a>
+<a href="https://github.com/Christux/Javascript/tree/master/Remote">https://github.com/Christux/Javascript/tree/master/Remote</a></br>
+A demo of the remote app is presented here : <a href="https://christux.github.io/Javascript/">https://christux.github.io/Javascript/</a>
 
 ## Screenshots :
 
