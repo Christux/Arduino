@@ -25,6 +25,10 @@ A demo of the remote app is presented here : <a href="https://christux.github.io
 <p align="center">
   <img src="esp8266_ledstrip.jpg"/>
 </p>
+<p align="center">
+  <img src="remote1.png"/>
+  <img src="remote2.png"/>
+</p>
 
 ## Links :
 
